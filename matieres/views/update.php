@@ -21,7 +21,7 @@ if ($etudiant) {
             </div>
             <div class="w3-half">
                 <label class="w3-text-blue"><b>Adresse</b></label><br />
-                <input type="text" id="adretu" name="adretu" value="<?=$etudiant->adretu;?>" />
+                <input type="text" id="adretu" name="adretu" value="<?=$etudiant->diploma;?>" />
             </div>
         </div>
 
@@ -29,22 +29,22 @@ if ($etudiant) {
         <div class="w3-row-padding">
             <div class="w3-half">
                 <label class="w3-text-blue"><b>Ville</b></label><br />
-                <input type="text" id="viletu" name="viletu" value="<?=$etudiant->viletu;?>" />
+                <input type="text" id="viletu" name="viletu" value="<?=$etudiant->diploma;?>" />
             </div>
             <div class="w3-half">
                 <label class="w3-text-blue"><b>Code postal</b></label><br />
-                <input type="number" id="cpetu" name="cpetu" value="<?=$etudiant->cpetu;?>"/>
+                <input type="number" id="cpetu" name="cpetu" value="<?=$etudiant->year;?>"/>
             </div>
         </div>
 
         <div class="w3-row-padding">
             <div class="w3-half">
                 <label class="w3-text-blue"><b>Telephone</b></label>
-                <input type="text" id="teletu" name="teletu" value="<?=$etudiant->teletu;?>" />
+                <input type="text" id="teletu" name="teletu" value="<?=$etudiant->td;?>" />
             </div>
             <div class="w3-half">
                 <label class="w3-text-blue"><b>Date entrée</b></label><br />
-                <input type="date" id="datentetu" name="datentetu" value="<?=$etudiant->datentetu;?>" />
+                <input type="text" id="datentetu" name="datentetu" value="<?=$etudiant->tp;?>" />
             </div>
         </div>
 
@@ -52,11 +52,11 @@ if ($etudiant) {
         <div class="w3-row-padding">
             <div class="w3-half">
                 <label class="w3-text-blue"><b>Année</b></label>
-                <input type="number" id="annetu" name="annetu" value="<?=$etudiant->annetu;?>" />
+                <input type="number" id="annetu" name="annetu" value="<?=$etudiant->adretu;?>" />
             </div>
             <div class="w3-half">
                 <label class="w3-text-blue"><b>Remarque</b></label><br />
-                <input type="text" id="remetu" name="remetu" value="<?=$etudiant->remetu;?>" />
+                <input type="text" id="remetu" name="remetu" value="<?=$etudiant->cpetu;?>" />
             </div>
         </div>
 
@@ -65,11 +65,11 @@ if ($etudiant) {
         <div class="w3-row-padding">
             <div class="w3-half">
                 <label class="w3-text-blue"><b>Sexe</b></label>
-                <input type="text" id="sexetu" name="sexetu" value="<?=$etudiant->sexetu;?>" />
+                <input type="text" id="sexetu" name="sexetu" value="<?=$etudiant->viletu;?>" />
             </div>
             <div class="w3-half">
                 <label class="w3-text-blue"><b>Date de naissance</b></label>
-                <input type="date" id="datnaietu" name="datnaietu" value="<?=$etudiant->datnaietu;?>" />
+                <input type="text" id="datnaietu" name="datnaietu" value="<?=$etudiant->viletu;?>" />
             </div>
         </div>
 
