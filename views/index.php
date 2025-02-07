@@ -3,6 +3,6 @@
     <ul>
         <li>Les étudiants</li>
         <li>Les enseignants</li>
-        <li>Les cours</li>
+        <li>Les matières</li>
     </ul>
 </div>

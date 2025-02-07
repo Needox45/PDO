@@ -14,7 +14,9 @@
     $list_menus = array(
       'etudiants' => 'Les étudiants',
       'enseignants' => 'Les enseignants',
-      'cours' => 'Les cours',
+      'Matieres' => 'Les matières',
+      'Epreuves' => 'Les épreuves',
+      'Modules' => 'Les modules',
     );
 
     foreach ($list_menus as $key => $menu) {
