@@ -19,7 +19,7 @@ class Etudiants
         $this->cpetu = 93;
         $this->teletu = "0845685247";
         $this->datentetu = "2023-09-23";
-        $this->annetu = 3;
+        $this->annetu = 2;
         $this->remetu = "remarque";
         $this->sexetu = "M";
         $this->datnaietu = "2002-10-12";
@@ -29,7 +29,7 @@ class Etudiants
     }
 
 
-    public function __create()
+    public function create()
     {
         try {
             $query = "INSERT INTO etudiants (nometu, prenometu, adretu, viletu, cpetu, teletu, datentetu, annetu, remetu, sexetu, datnaietu)

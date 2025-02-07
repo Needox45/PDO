@@ -4,7 +4,7 @@ if ($etudiant) {
 
 <form action="<?= $_SERVER['REQUEST_URI'] ?>" method="POST" class="col-2">
 
-
+<input type="hidden" id="numetu" name="numetu" value="<?=$etudiant->numetu;?>" />
 
         <div class="w3-row-padding">
             <div class="w3-half">
