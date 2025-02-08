@@ -126,6 +126,19 @@ class Epreuves
         $this->coefepr = filter_var($data['coefepr'], FILTER_VALIDATE_INT) ?? 0;
         $this->annepr = filter_var($data['annepr'], FILTER_VALIDATE_INT) ?? 0;
     }
+
+
+
+    public function getClassementEtudiants() {
+        $query = "SELECT etudiants.nometu AS nom_etudiant, RANK() OVER (ORDER BY avoir_note.note DESC) AS rang
+                  FROM avoir_note
+                  JOIN etudiants ON avoir_note.numetu = etudiants.numetu
+                  WHERE avoir_note.numepr = :numepr";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(':numepr', $this->numepr, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
 
 

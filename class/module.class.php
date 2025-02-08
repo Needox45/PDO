@@ -39,10 +39,11 @@ class Modules
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         if ($result) {
             $this->hydrate($result);
+            return true;
         } else {
             echo "Aucun module trouvé avec ce numéro.";
+            return false;
         }
-        return $result;
     }
 
     public static function fetchAll($db)
@@ -109,7 +110,28 @@ class Modules
         $this->nommod = filter_var($data['nommod']) ?? '';
         $this->coefmod = filter_var($data['coefmod'], FILTER_VALIDATE_INT) ?? 0;
     }
+
+    public function getClassementEtudiants()
+    {
+        $query = "SELECT etudiants.nometu AS nom_etudiant, RANK() OVER (ORDER BY AVG(avoir_note.note) DESC) AS rang
+                  FROM avoir_note
+                  JOIN etudiants ON avoir_note.numetu = etudiants.numetu
+                  JOIN epreuves ON avoir_note.numepr = epreuves.numepr
+                  JOIN matieres ON epreuves.matepr = matieres.nummat
+                  WHERE matieres.nummod = :nummod
+                  GROUP BY etudiants.numetu";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(':nummod', $this->nummod, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getMatieres()
+    {
+        $query = "SELECT * FROM matieres WHERE nummod = :nummod";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(':nummod', $this->nummod, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_CLASS, 'Matieres');
+    }
 }
-
-
-

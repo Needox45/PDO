@@ -64,3 +64,25 @@
         </div>
     </div>
 </form>
+
+
+
+
+<?php
+$classements = $new_etudiant->getClassementModules();
+?>
+<div>
+    <h3>Classement de l'étudiant dans chaque module</h3>
+    <table>
+        <tr>
+            <th>Module</th>
+            <th>Classement</th>
+        </tr>
+        <?php foreach ($classements as $classement): ?>
+        <tr>
+            <td><?= $classement['nom_module']; ?></td>
+            <td><?= $classement['rang']; ?></td>
+        </tr>
+        <?php endforeach; ?>
+    </table>
+</div>

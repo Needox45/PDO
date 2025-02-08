@@ -41,3 +41,23 @@
         </div>
     </div>
 </form>
+
+
+<?php
+$classements = $module->getClassementEtudiants();
+?>
+<div>
+    <h3>Classement des étudiants</h3>
+    <table>
+        <tr>
+            <th>Étudiant</th>
+            <th>Classement</th>
+        </tr>
+        <?php foreach ($classements as $classement): ?>
+        <tr>
+            <td><?= $classement['nom_etudiant']; ?></td>
+            <td><?= $classement['rang']; ?></td>
+        </tr>
+        <?php endforeach; ?>
+    </table>
+</div>

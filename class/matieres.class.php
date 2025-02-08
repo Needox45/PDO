@@ -41,10 +41,11 @@ class Matieres
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         if ($result) {
             $this->hydrate($result);
+            return true;
         } else {
             echo "Aucune matière trouvée avec ce numéro.";
+            return false;
         }
-        return $result;
     }
 
     public static function fetchAll($db)
@@ -112,6 +113,30 @@ class Matieres
         $this->nommat = filter_var($data['nommat']) ?? '';
         $this->nummod = filter_var($data['nummod'], FILTER_VALIDATE_INT) ?? 0;
         $this->coefmat = filter_var($data['coefmat'], FILTER_VALIDATE_INT) ?? 0;
+    }
+
+
+
+    public function getClassementEtudiants() {
+        $query = "SELECT etudiants.nometu AS nom_etudiant, RANK() OVER (ORDER BY AVG(avoir_note.note) DESC) AS rang
+                  FROM avoir_note
+                  JOIN etudiants ON avoir_note.numetu = etudiants.numetu
+                  JOIN epreuves ON avoir_note.numepr = epreuves.numepr
+                  WHERE epreuves.matepr = :nummat
+                  GROUP BY etudiants.numetu";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(':nummat', $this->nummat, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+
+    public function getEpreuves() {
+        $query = "SELECT * FROM epreuves WHERE matepr = :nummat";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(':nummat', $this->nummat, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_CLASS, 'Epreuves');
     }
 }
 

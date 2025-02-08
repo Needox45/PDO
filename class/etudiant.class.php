@@ -210,6 +210,38 @@ class Etudiants
     }
 
 
+
+    public function getClassementModules() {
+        $query = "SELECT modules.nommod AS nom_module, RANK() OVER (ORDER BY AVG(avoir_note.note) DESC) AS rang
+                  FROM avoir_note
+                  JOIN epreuves ON avoir_note.numepr = epreuves.numepr
+                  JOIN matieres ON epreuves.matepr = matieres.nummat
+                  JOIN modules ON matieres.nummod = modules.nummod
+                  WHERE avoir_note.numetu = :numetu
+                  GROUP BY modules.nummod";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(':numetu', $this->numetu, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+
+    public function getClassementParAnnee($annee) {
+        $query = "SELECT etudiants.nometu AS nom_etudiant, RANK() OVER (ORDER BY AVG(avoir_note.note) DESC) AS rang
+                  FROM avoir_note
+                  JOIN etudiants ON avoir_note.numetu = etudiants.numetu
+                  JOIN epreuves ON avoir_note.numepr = epreuves.numepr
+                  JOIN matieres ON epreuves.matepr = matieres.nummat
+                  JOIN modules ON matieres.nummod = modules.nummod
+                  WHERE etudiants.annetu = :annetu
+                  GROUP BY etudiants.numetu";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(':annetu', $annee, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+
 }
 
 
