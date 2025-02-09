@@ -44,10 +44,6 @@
     </div>
 </form>
 
-
-<?php
-$classements = $new_matiere->getClassementEtudiants();
-?>
 <div>
     <h3>Classement des étudiants</h3>
     <table>

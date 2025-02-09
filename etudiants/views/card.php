@@ -20,7 +20,7 @@
                 <th class="w3-center">Annee</th>
                 <th class="">Remarque</th>
                 <th class="w3-center">Genre</th>
-                <th class="w3-center">Datre de naissance</th>
+                <th class="w3-center">Date de naissance</th>
             </tr>
             <?php
             if ($new_etudiant) {
@@ -38,7 +38,6 @@
                     <td class=""><?= $new_etudiant->remetu; ?></td>
                     <td class=""><?= $new_etudiant->sexetu; ?></td>
                     <td class=""><?= $new_etudiant->datnaietu; ?></td>
-
                 </tr>
                 <?php
             } else {
@@ -49,11 +48,7 @@
     </div>
 </div>
 
-
-
-
 <form action="<?= $_SERVER['REQUEST_URI'] ?>" method="POST" class="col-2">
-
     <br />
     <div class="w3-row-padding">
         <div class="w3-half">
@@ -65,12 +60,6 @@
     </div>
 </form>
 
-
-
-
-<?php
-$classements = $new_etudiant->getClassementModules();
-?>
 <div>
     <h3>Classement de l'étudiant dans chaque module</h3>
     <table>

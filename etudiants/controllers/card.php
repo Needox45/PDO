@@ -1,18 +1,20 @@
 <?php
 
-
 require dirname(__FILE__) . '/../../class/etudiant.class.php';
-$new_etudiant = new Etudiants($db);
 
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
 }
-$new_etudiant->fetch($id);
+$etudiant = new Etudiants($db);
+$etudiant->fetch($id);
 
-if (isset($_POST['delete'])) {
-    header("Location: index.php?element=etudiants&action=delete&id=$id");
-}
+$classements = $db->prepare("SELECT modules.nommod AS nom_module, classement_modules.rang
+                             FROM classement_modules
+                             JOIN modules ON classement_modules.nummod = modules.nummod
+                             WHERE classement_modules.numetu = :numetu
+                             ORDER BY classement_modules.rang");
+$classements->bindParam(':numetu', $id, PDO::PARAM_INT);
+$classements->execute();
+$classements = $classements->fetchAll(PDO::FETCH_ASSOC);
 
-if (isset($_POST['update'])) {
-    header("Location: index.php?element=etudiants&action=update&id=$id");
-} 
+include dirname(__FILE__) . '/../views/card.php';

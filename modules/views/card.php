@@ -14,12 +14,12 @@
                 <th class="">Coefficient</th>
             </tr>
             <?php
-            if ($module) {
+            if ($new_module) {
                 ?>
                 <tr>
-                    <td class=""><?= $module->nummod ?></td>
-                    <td class=""><?= $module->nommod; ?></td>
-                    <td class=""><?= $module->coefmod; ?></td>
+                    <td class=""><?= $new_module->nummod ?></td>
+                    <td class=""><?= $new_module->nommod; ?></td>
+                    <td class=""><?= $new_module->coefmod; ?></td>
                 </tr>
                 <?php
             } else {
@@ -42,10 +42,6 @@
     </div>
 </form>
 
-
-<?php
-$classements = $module->getClassementEtudiants();
-?>
 <div>
     <h3>Classement des étudiants</h3>
     <table>

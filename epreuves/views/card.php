@@ -50,9 +50,6 @@
     </div>
 </form>
 
-<?php
-$classements = $new_epreuve->getClassementEtudiants();
-?>
 <div>
     <h3>Classement des étudiants</h3>
     <table>
