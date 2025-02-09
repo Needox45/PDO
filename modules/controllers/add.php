@@ -7,14 +7,18 @@ if (isset($_POST['cancel'])) {
 }
 
 if (isset($_POST['confirm_envoyer'])) {
-    $module = new Modules($db, $_POST);
-    $module->create();
-    
-    if ($module->nummod <= 0) {
-        header('Location: index.php?element=modules&action=list');
-    } else {
-        header('Location: index.php?element=modules&action=list');
-    }
+
+    //$module = new Modules($db, $_POST);
+    //$module->create();
+    $stmt = $db->prepare("CALL ajout_module(:nommod, :coefmod)");
+    $stmt->bindParam(':nommod', $_POST['nommod']);
+    $stmt->bindParam(':coefmod', $_POST['coefmod']);
+    $stmt->execute();
+
+    header('Location: index.php?element=modules&action=list');
+    exit;
 }
 
 ?>
+
+
